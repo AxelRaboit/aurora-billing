@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aurora\Module\Billing\Ocr\Controller\Admin;
+namespace Aurora\Module\Billing\Ocr\Controller\Backend;
 
 use Aurora\Core\Enum\HttpMethodEnum;
 use Aurora\Core\Frontend\Controller\JsonResponseTrait;
@@ -50,7 +50,7 @@ final class OcrImportController extends AbstractController
     {
         $recent = $this->jobs->findRecent(10);
 
-        return $this->render('@Billing/admin/ocr/import.html.twig', [
+        return $this->render('@Billing/backend/ocr/import.html.twig', [
             'recentJobs' => array_map($this->jobSerializer->serialize(...), $recent),
             'uploadPath' => $this->generateUrl('backend_billing_ocr_import_upload'),
             'jobsPath' => $this->generateUrl('backend_billing_ocr_jobs'),
@@ -87,7 +87,7 @@ final class OcrImportController extends AbstractController
     {
         $pagination = PaginationRequest::fromRequest($request);
 
-        return $this->render('@Billing/admin/ocr/jobs.html.twig', $this->jobsViewBuilder->indexView($pagination, $request));
+        return $this->render('@Billing/backend/ocr/jobs.html.twig', $this->jobsViewBuilder->indexView($pagination, $request));
     }
 
     #[Route('/jobs/list', name: '_jobs_list', methods: [HttpMethodEnum::Get->value])]

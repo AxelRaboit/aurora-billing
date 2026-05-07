@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aurora\Module\Billing\Compliance\Controller\Admin;
+namespace Aurora\Module\Billing\Compliance\Controller\Backend;
 
 use Aurora\Core\Enum\HttpMethodEnum;
 use Aurora\Core\Frontend\Controller\JsonResponseTrait;
@@ -24,7 +24,7 @@ final class ComplianceController extends AbstractController
     #[Route('', name: '', methods: [HttpMethodEnum::Get->value])]
     public function index(): Response
     {
-        return $this->render('@Billing/admin/compliance/index.html.twig');
+        return $this->render('@Billing/backend/compliance/index.html.twig');
     }
 
     #[Route('/report', name: '_report', methods: [HttpMethodEnum::Get->value])]

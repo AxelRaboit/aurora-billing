@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aurora\Module\Billing\Invoice\Controller\Admin;
+namespace Aurora\Module\Billing\Invoice\Controller\Backend;
 
 use Aurora\Core\Enum\HttpMethodEnum;
 use Aurora\Core\Frontend\Controller\JsonResponseTrait;
@@ -44,7 +44,7 @@ final class InvoicesController extends AbstractController
     {
         $pagination = PaginationRequest::fromRequest($request);
 
-        return $this->render('@Billing/admin/invoices/index.html.twig', $this->viewBuilder->indexView($pagination, $request));
+        return $this->render('@Billing/backend/invoices/index.html.twig', $this->viewBuilder->indexView($pagination, $request));
     }
 
     #[Route('/list', name: '_list', methods: [HttpMethodEnum::Get->value])]
@@ -64,7 +64,7 @@ final class InvoicesController extends AbstractController
     #[Route('/{id}', name: '_show', requirements: ['id' => '\d+|__id__'], methods: [HttpMethodEnum::Get->value])]
     public function show(Invoice $invoice): Response
     {
-        return $this->render('@Billing/admin/invoices/show.html.twig', $this->viewBuilder->showView($invoice));
+        return $this->render('@Billing/backend/invoices/show.html.twig', $this->viewBuilder->showView($invoice));
     }
 
     #[Route('/{id}/validate', name: '_validate', requirements: ['id' => '\d+|__id__'], methods: [HttpMethodEnum::Post->value])]

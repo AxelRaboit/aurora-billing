@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aurora\Module\Billing\Invoice\Controller\Admin;
+namespace Aurora\Module\Billing\Invoice\Controller\Backend;
 
 use Aurora\Core\Enum\HttpMethodEnum;
 use Aurora\Core\Frontend\Controller\JsonResponseTrait;
@@ -41,7 +41,7 @@ final class TiersController extends AbstractController
         $pagination = PaginationRequest::fromRequest($request);
         $type = TiersTypeEnum::tryFrom($request->query->getString('type', ''));
 
-        return $this->render('@Billing/admin/tiers/index.html.twig', $this->viewBuilder->indexView($pagination, $type));
+        return $this->render('@Billing/backend/tiers/index.html.twig', $this->viewBuilder->indexView($pagination, $type));
     }
 
     #[Route('/list', name: '_list', methods: [HttpMethodEnum::Get->value])]
@@ -56,7 +56,7 @@ final class TiersController extends AbstractController
     #[Route('/{id}', name: '_show', requirements: ['id' => '\d+|__id__'], methods: [HttpMethodEnum::Get->value])]
     public function show(Tiers $tiers): Response
     {
-        return $this->render('@Billing/admin/tiers/show.html.twig', $this->viewBuilder->showView($tiers));
+        return $this->render('@Billing/backend/tiers/show.html.twig', $this->viewBuilder->showView($tiers));
     }
 
     #[Route('/{id}/update', name: '_update', requirements: ['id' => '\d+|__id__'], methods: [HttpMethodEnum::Post->value])]

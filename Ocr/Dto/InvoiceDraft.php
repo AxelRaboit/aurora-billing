@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aurora\Module\Billing\Ocr\DTO;
+namespace Aurora\Module\Billing\Ocr\Dto;
 
 use DateTimeImmutable;
 
